@@ -1,14 +1,15 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import ReviewCard from "../components/ReviewCard";
-import "./Reviews.css";
 import { useReviews } from "../hooks/useReviews";
 import { apiUrl } from "../utils/apiURL";
 
-const Reviews = () => {
+const Category = (props) => {
+  const { category } = useParams();
   const [reviews, setReviews] = useState([]);
   const { data, loading, error, forwardPage, backPage } = useReviews(
-    apiUrl + "/reviews"
+    apiUrl + "/reviews",
+    { category: category }
   );
 
   useEffect(() => {
@@ -17,6 +18,7 @@ const Reviews = () => {
 
   if (loading) return <p>Loading...</p>;
   if (error) console.error(error);
+  console.log(reviews);
   return (
     reviews && (
       <main className="reviews-container">
@@ -30,4 +32,4 @@ const Reviews = () => {
   );
 };
 
-export default Reviews;
+export default Category;
