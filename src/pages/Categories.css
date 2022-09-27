@@ -5,3 +5,7 @@ li {
 a {
   text-decoration: none;
 }
+ul {
+  display: flex;
+  flex-direction: column;
+}

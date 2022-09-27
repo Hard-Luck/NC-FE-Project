@@ -17,17 +17,15 @@ const Categories = () => {
   if (error) console.error(error);
   return (
     categories && (
-      <ul>
+      <div>
         {categories.map((category) => {
           return (
-            <li key={category.slug}>
-              <Link to={`/reviews/${category.slug}`} category={category}>
-                <CategoryCard category={category} />
-              </Link>
-            </li>
+            <Link to={`/${category.slug}`} category={category}>
+              <CategoryCard category={category} />
+            </Link>
           );
         })}
-      </ul>
+      </div>
     )
   );
 };

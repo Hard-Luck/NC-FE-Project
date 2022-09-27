@@ -3,6 +3,7 @@
   margin: 2px;
   padding: 10px;
   background-color: rgb(209, 182, 234);
+  display: flex;
 }
 
 .review-avatar {

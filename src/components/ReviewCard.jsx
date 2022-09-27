@@ -10,11 +10,11 @@ const ReviewCard = ({ review }) => {
 
   return (
     <article className="card">
-      <h1>{`${review.title} by ${review.owner}`}</h1>
-      <p>{formatDate(review.created_at)}</p>
       <div className="content">
         <img className="review-avatar" src={review.review_img_url} alt="" />
-        <p>{review.review_body}</p>
+        <h1>{`${review.title} by ${review.owner}`}</h1>
+        <p>{formatDate(review.created_at)}</p>
+        <p>{review.review_body.slice(0, 100)}...</p>
       </div>
       <div className="clickable">
         <a href="#main">Comments: {review.comment_count}</a>
