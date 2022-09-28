@@ -18,7 +18,6 @@ const Category = (props) => {
 
   if (loading) return <p>Loading...</p>;
   if (error) console.error(error);
-  console.log(reviews);
   return (
     reviews && (
       <main className="reviews-container">

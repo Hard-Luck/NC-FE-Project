@@ -1,11 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useVotes } from "../hooks/useVotes";
+import { useReviewVotes } from "../hooks/useReviewVotes";
 import { formatDate } from "../utils/date";
 import "./ReviewCard.css";
 
 const ReviewCard = ({ review }) => {
-  const { votes, upvote } = useVotes(review.votes);
+  const { votes, upvote, downvote } = useReviewVotes(
+    review.review_id,
+    review.votes
+  );
 
   return (
     <article className="card">
@@ -20,8 +23,11 @@ const ReviewCard = ({ review }) => {
         <p>{review.review_body.slice(0, 100)}...</p>
       </div>
       <div className="clickable">
-        <a href="#main">Comments: {review.comment_count}</a>
-        <button onClick={upvote}>👍 :{votes}</button>
+        <a href="#main">
+          Comments: {review.comment_count} Votes: {votes}
+        </a>
+        <button onClick={downvote}>👎</button>
+        <button onClick={upvote}>👍</button>
       </div>
     </article>
   );
