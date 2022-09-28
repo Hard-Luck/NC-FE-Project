@@ -10,7 +10,6 @@ const SingleReview = () => {
   const { review_id } = useParams();
   const { data, loading, error } = useFetch(apiUrl + `/reviews/${review_id}`);
   useEffect(() => {
-    console.log(data);
     setReview(data.review);
   }, [data]);
 
