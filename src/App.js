@@ -6,6 +6,7 @@ import Category from "./pages/Category";
 import NotFound from "./pages/NotFound";
 import NavBar from "./components/NavBar";
 import Header from "./components/Header";
+import SingleReview from "./pages/SingleReview";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Reviews />} />
+        <Route path="/reviews/:review_id" element={<SingleReview />} />
         <Route path="/:category" element={<Category />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="*" element={<NotFound />} />
