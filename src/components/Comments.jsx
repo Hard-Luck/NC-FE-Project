@@ -16,11 +16,12 @@ const Comments = ({ review_id }) => {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>404: Comments not found</p>;
-  return (
-    comments &&
+  return comments && comments.length > 0 ? (
     comments.map((comment) => {
       return <CommentCard comment={comment} />;
     })
+  ) : (
+    <p>No comments on this post</p>
   );
 };
 

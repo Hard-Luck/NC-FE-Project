@@ -3,8 +3,10 @@ import { useReviewVotes } from "../hooks/useReviewVotes";
 import { formatDate } from "../utils/date";
 import "./DetailedReviewCard.css";
 import Comments from "./Comments";
+import { idGen } from "../utils/idGen";
 
 const DetailedReviewCard = ({ review }) => {
+  const key = idGen();
   const { votes, upvote, downvote } = useReviewVotes(
     review.review_id,
     review.votes
@@ -26,7 +28,7 @@ const DetailedReviewCard = ({ review }) => {
       </div>
       <details>
         <summary>Comments</summary>
-        <Comments review_id={review.review_id} />
+        <Comments key={key()} review_id={review.review_id} />
       </details>
     </main>
   );
