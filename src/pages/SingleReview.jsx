@@ -15,7 +15,7 @@ const SingleReview = () => {
   }, [data]);
 
   if (loading) return <p>Loading...</p>;
-  if (error) return console.error(error);
+  if (error) return <h1>404: review notfound</h1>;
   return review && <DetailedReviewCard review={review} />;
 };
 
