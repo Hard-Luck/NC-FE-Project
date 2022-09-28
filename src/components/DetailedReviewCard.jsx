@@ -2,6 +2,7 @@ import React from "react";
 import { useReviewVotes } from "../hooks/useReviewVotes";
 import { formatDate } from "../utils/date";
 import "./DetailedReviewCard.css";
+import Comments from "./Comments";
 
 const DetailedReviewCard = ({ review }) => {
   const { votes, upvote, downvote } = useReviewVotes(
@@ -23,6 +24,10 @@ const DetailedReviewCard = ({ review }) => {
         <button onClick={downvote}>👎</button>
         <button onClick={upvote}>👍</button>
       </div>
+      <details>
+        <summary>Comments</summary>
+        <Comments review_id={review.review_id} />
+      </details>
     </main>
   );
 };
