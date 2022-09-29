@@ -7,7 +7,7 @@ const CommentCard = ({ comment }) => {
     <div className="comment-card">
       <p>{comment.body}</p>
       <p>
-        by: {comment.author} at {formatDate(comment.createdAt)}
+        by: {comment.author} at {formatDate(comment.created_at)}
       </p>
     </div>
   );

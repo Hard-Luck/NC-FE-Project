@@ -18,7 +18,7 @@ export const useFetch = (url, queries = {}) => {
         setLoading(false);
       }
     };
-    getData(url);
+    if (!url.includes("undefined")) getData(url);
   }, [url]);
   return { data, loading, error };
 };
