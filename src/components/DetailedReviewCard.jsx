@@ -1,7 +1,6 @@
 import React from "react";
 import { useReviewVotes } from "../hooks/useReviewVotes";
 import { formatDate } from "../utils/date";
-import "./DetailedReviewCard.css";
 import Comments from "./Comments";
 import { idGen } from "../utils/idGen";
 

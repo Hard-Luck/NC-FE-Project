@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useReviewVotes } from "../hooks/useReviewVotes";
 import { formatDate } from "../utils/date";
-import "./ReviewCard.css";
 
 const ReviewCard = ({ review }) => {
   const { votes, upvote, downvote } = useReviewVotes(

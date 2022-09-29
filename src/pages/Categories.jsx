@@ -20,7 +20,10 @@ const Categories = () => {
       <div>
         {categories.map((category) => {
           return (
-            <Link to={`/${category.slug}`} category={category}>
+            <Link
+              key={category.slug}
+              to={`/${category.slug}`}
+              category={category}>
               <CategoryCard category={category} />
             </Link>
           );
