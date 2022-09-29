@@ -25,7 +25,6 @@ export const useAddComment = (review_id, setComments) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(Comment);
   };
   const handleChange = (e) => {
     setComment((curr) => {
