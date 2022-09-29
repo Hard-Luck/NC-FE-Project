@@ -4,12 +4,12 @@ import ReviewCard from "../components/ReviewCard";
 import "./Reviews.css";
 import { useReviews } from "../hooks/useReviews";
 import { apiUrl } from "../utils/apiURL";
+import SortReviewForm from "../components/SortReviewForm";
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
-  const { data, loading, error, forwardPage, backPage } = useReviews(
-    apiUrl + "/reviews"
-  );
+  const { data, loading, error, forwardPage, backPage, changeSort } =
+    useReviews(apiUrl + "/reviews");
 
   useEffect(() => {
     setReviews(data.reviews);
@@ -20,6 +20,7 @@ const Reviews = () => {
   return (
     reviews && (
       <main className="reviews-container">
+        <SortReviewForm changeSort={changeSort} />
         {reviews.map((review) => {
           return <ReviewCard key={review.review_id} review={review} />;
         })}
