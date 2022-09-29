@@ -23,9 +23,6 @@ export const useAddComment = (review_id, setComments) => {
     setError(null);
   }, [error]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
   const handleChange = (e) => {
     setComment((curr) => {
       return { ...curr, body: e.target.value };
@@ -40,21 +37,22 @@ export const useAddComment = (review_id, setComments) => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    setComment({
-      body: "",
-      author: "",
-      created_at: Date.now(),
-    });
-    setComments((curr) => {
-      return [...curr, comment];
-    });
-    addComment();
+    if (comment.body && comment.author) {
+      setComments((curr) => {
+        return [...curr, comment];
+      });
+      setComment({
+        body: "",
+        author: "",
+        created_at: Date.now(),
+      });
+      addComment();
+    }
   };
   return {
     comment,
     setComment,
     addComment,
-    handleSubmit,
     handleChange,
     handleAuthor,
     handleClick,
