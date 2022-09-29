@@ -52,10 +52,33 @@ export const useReviews = (url) => {
         return { ...curr, sort_by: query };
       });
       setSearchParams((current) => {
-        return { ...current, order_by: query };
+        return { sort_by: query, ...current };
       });
     }
   };
+  const changeOrder = (e) => {
+    e.preventDefault();
+    const flip = new Map([
+      ["asc", "desc"],
+      ["desc", "asc"],
+    ]);
+    const newOrder = flip.get(queries.order);
 
-  return { data, loading, error, forwardPage, backPage, changeSort };
+    setQueries((curr) => {
+      return { ...curr, order: newOrder };
+    });
+    setSearchParams((current) => {
+      return { ...current, order: newOrder };
+    });
+  };
+
+  return {
+    data,
+    loading,
+    error,
+    forwardPage,
+    backPage,
+    changeSort,
+    changeOrder,
+  };
 };

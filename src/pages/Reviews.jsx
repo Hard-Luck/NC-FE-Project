@@ -8,8 +8,15 @@ import SortReviewForm from "../components/SortReviewForm";
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
-  const { data, loading, error, forwardPage, backPage, changeSort } =
-    useReviews(apiUrl + "/reviews");
+  const {
+    data,
+    loading,
+    error,
+    forwardPage,
+    backPage,
+    changeSort,
+    changeOrder,
+  } = useReviews(apiUrl + "/reviews");
 
   useEffect(() => {
     setReviews(data.reviews);
@@ -20,7 +27,7 @@ const Reviews = () => {
   return (
     reviews && (
       <main className="reviews-container">
-        <SortReviewForm changeSort={changeSort} />
+        <SortReviewForm changeSort={changeSort} changeOrder={changeOrder} />
         {reviews.map((review) => {
           return <ReviewCard key={review.review_id} review={review} />;
         })}
