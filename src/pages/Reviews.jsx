@@ -1,7 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import ReviewCard from "../components/ReviewCard";
-import "./Reviews.css";
 import { useReviews } from "../hooks/useReviews";
 import { apiUrl } from "../utils/apiURL";
 import SortReviewForm from "../components/SortReviewForm";
@@ -26,11 +25,13 @@ const Reviews = () => {
   if (error) return <p>404: not found</p>;
   return (
     reviews && (
-      <main className="reviews-container">
+      <main>
         <SortReviewForm changeSort={changeSort} changeOrder={changeOrder} />
-        {reviews.map((review) => {
-          return <ReviewCard key={review.review_id} review={review} />;
-        })}
+        <div className="reviews-container">
+          {reviews.map((review) => {
+            return <ReviewCard key={review.review_id} review={review} />;
+          })}
+        </div>
         <button onClick={backPage}>Previous Page</button>
         <button onClick={forwardPage}>Next Page</button>
       </main>

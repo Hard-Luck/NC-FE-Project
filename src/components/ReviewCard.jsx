@@ -10,23 +10,30 @@ const ReviewCard = ({ review }) => {
   );
 
   return (
-    <article className="card">
-      <div className="content">
+    <article className="card grid-item">
+      <div className="card-content">
         <img className="review-avatar" src={review.review_img_url} alt="" />
-        <h1>
+        <h3>
           <Link to={`/reviews/${review.review_id}`} state={{ review: review }}>
-            {`${review.title} by ${review.owner}`}
+            {`${review.title}`}
           </Link>
-        </h1>
+        </h3>
+        <h4>{` by ${review.owner}`}</h4>
         <p>{formatDate(review.created_at)}</p>
-        <p>{review.review_body.slice(0, 100)}...</p>
+        <p>{review.review_body.slice(0, 20)}...</p>
       </div>
       <div className="clickable">
         <a href="#main">
           Comments: {review.comment_count} Votes: {votes}
         </a>
-        <button onClick={downvote}>👎</button>
-        <button onClick={upvote}>👍</button>
+      </div>
+      <div className="btn-container">
+        <button className="like-btn" onClick={downvote}>
+          Dislike 👎
+        </button>
+        <button className="like-btn" onClick={upvote}>
+          Like 👍
+        </button>
       </div>
     </article>
   );
