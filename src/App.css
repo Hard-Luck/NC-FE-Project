@@ -119,3 +119,15 @@ a {
   display: flex;
   justify-content: right;
 }
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+ul {
+  display: flex;
+  flex-direction: column;
+}

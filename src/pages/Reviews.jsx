@@ -23,7 +23,7 @@ const Reviews = () => {
   }, [data]);
 
   if (loading) return <p>Loading...</p>;
-  if (error) console.error(error);
+  if (error) return <p>404: not found</p>;
   return (
     reviews && (
       <main className="reviews-container">

@@ -3,9 +3,9 @@ import axios from "axios";
 import { useSearchParams } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
-export const useReviews = (url) => {
+export const useReviews = (url, allReviews = true) => {
   const [data, setData] = useState([]);
-  let [searchParams, setSearchParams] = useSearchParams();
+  let [, setSearchParams] = useSearchParams();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [isMounted, setIsMounted] = useState(false);
@@ -31,7 +31,8 @@ export const useReviews = (url) => {
         const response = await axios.get(apiUrl, {
           params: queries,
         });
-        if (isMounted) setData(response.data);
+        if (allReviews) setData(response.data);
+        else if (isMounted) setData(response.data);
       } catch (error) {
         if (isMounted) setError(error);
       } finally {
@@ -40,6 +41,7 @@ export const useReviews = (url) => {
       }
     };
     getData(url);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url, setQueries, queries]);
 
   const backPage = (e) => {

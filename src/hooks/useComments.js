@@ -10,10 +10,9 @@ export const useComments = () => {
   useEffect(() => {
     if (error) {
       setComments((curr) => [cashedComment[0], ...curr]);
-      console.log(comments);
     }
     setError(null);
-  }, [error]);
+  }, [error, cashedComment, setComments]);
 
   const deleteComment = async (comment_id) => {
     setCashedComment(
