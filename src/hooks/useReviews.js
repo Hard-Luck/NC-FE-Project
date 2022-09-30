@@ -1,34 +1,46 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-export const useReviews = (url) => {
+export const useReviews = (url, allReviews = true) => {
   const [data, setData] = useState([]);
   let [searchParams, setSearchParams] = useSearchParams();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [isMounted, setIsMounted] = useState(false);
   const [queries, setQueries] = useState({
     p: 1,
     sort_by: "created_at",
     order: "desc",
   });
+  const { category } = useParams();
 
   useEffect(() => {
+    setQueries((current) => {
+      if (category && current.category !== category) {
+        return { ...current, category: category };
+      }
+      return current;
+    });
     const getData = async (apiUrl) => {
       setLoading(true);
+      setIsMounted(true);
       try {
         const response = await axios.get(apiUrl, {
           params: queries,
         });
-        setData(response.data);
+        if (allReviews) setData(response.data);
+        else if (isMounted) setData(response.data);
       } catch (error) {
-        setError(error);
+        if (isMounted) setError(error);
       } finally {
         setLoading(false);
+        setIsMounted(false);
       }
     };
     getData(url);
-  }, [url, queries]);
+  }, [url, setQueries, queries]);
 
   const backPage = (e) => {
     e.preventDefault();
@@ -76,9 +88,11 @@ export const useReviews = (url) => {
     data,
     loading,
     error,
+    queries,
     forwardPage,
     backPage,
     changeSort,
     changeOrder,
+    setQueries,
   };
 };
