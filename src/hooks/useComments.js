@@ -12,7 +12,7 @@ export const useComments = () => {
       setComments((curr) => [cashedComment[0], ...curr]);
     }
     setError(null);
-  }, [error]);
+  }, [error, cashedComment, setComments]);
 
   const deleteComment = async (comment_id) => {
     setCashedComment(

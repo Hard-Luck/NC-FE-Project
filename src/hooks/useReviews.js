@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 
 export const useReviews = (url, allReviews = true) => {
   const [data, setData] = useState([]);
-  let [searchParams, setSearchParams] = useSearchParams();
+  let [, setSearchParams] = useSearchParams();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [isMounted, setIsMounted] = useState(false);
@@ -40,6 +40,7 @@ export const useReviews = (url, allReviews = true) => {
       }
     };
     getData(url);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url, setQueries, queries]);
 
   const backPage = (e) => {
