@@ -12,16 +12,22 @@ const DetailedReviewCard = ({ review }) => {
   );
   return (
     <main>
-      <div className="card">
-        <img className="review-avatar" src={review.review_img_url} alt="" />
-        <h1>{`${review.title} by ${review.owner}`}</h1>
-        <p>{formatDate(review.created_at)}</p>
-        <p>{review.review_body}...</p>
-      </div>
-      <div className="clickable">
-        <a href="#main">
-          Comments: {review.comment_count} Votes: {votes}
-        </a>
+      <div className="detailed-card">
+        <img
+          className="rev-detailed-avatar"
+          src={review.review_img_url}
+          alt=""
+        />
+        <div className="detail-card-text">
+          <h1>{`${review.title} by ${review.owner}`}</h1>
+          <p>{formatDate(review.created_at)}</p>
+          <p>{review.review_body}...</p>
+        </div>
+        <div className="clickable">
+          <a href="#main">
+            Comments: {review.comment_count} Votes: {votes}
+          </a>
+        </div>
         <button onClick={downvote}>👎</button>
         <button onClick={upvote}>👍</button>
       </div>

@@ -1,3 +1,0 @@
-Fix the sometimes rendering all of the reviews
-fix last page error
-tidy up hooks make them more granular
