@@ -1,11 +1,27 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
-import { apiUrl } from "../utils/apiURL";
+import { getComments, removeComment } from "../utils/api.js";
 
-export const useComments = () => {
+export const useComments = (review_id) => {
   const [comments, setComments] = useState([]);
   const [cashedComment, setCashedComment] = useState([]);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchComments = async (id) => {
+      setLoading(true);
+      try {
+        const data = await getComments(id);
+        console.log(data);
+        setComments(data.comments);
+      } catch (err) {
+        throw err;
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchComments(review_id);
+  }, [review_id]);
 
   useEffect(() => {
     if (error) {
@@ -22,11 +38,11 @@ export const useComments = () => {
       comments.filter((comment) => comment.comment_id !== comment_id)
     );
     try {
-      await axios.delete(apiUrl + `/comments/${comment_id}`);
+      await removeComment(comment_id);
     } catch (e) {
       alert("Error delete failed");
       setError(true);
     }
   };
-  return { comments, setComments, deleteComment };
+  return { comments, loading, error, setComments, deleteComment };
 };

@@ -1,48 +1,38 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { useSearchParams } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { getReviews } from "../utils/api";
 
 export const useReviews = (url, allReviews = true) => {
   const [data, setData] = useState([]);
-  let [, setSearchParams] = useSearchParams();
+  const [, setSearchParams] = useSearchParams();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [isMounted, setIsMounted] = useState(false);
   const [queries, setQueries] = useState({
     p: 1,
     sort_by: "created_at",
     order: "desc",
   });
-  const { category } = useParams();
 
   useEffect(() => {
-    setQueries((current) => {
-      if (category && current.category !== category) {
-        return { ...current, category: category };
-      }
-      return current;
-    });
     const getData = async (apiUrl) => {
       setLoading(true);
-      setIsMounted(true);
       try {
-        console.log(queries);
-        const response = await axios.get(apiUrl, {
-          params: queries,
-        });
-        if (allReviews) setData(response.data);
-        else if (isMounted) setData(response.data);
+        const { reviews } = await getReviews(queries.p);
+        setData(reviews);
       } catch (error) {
-        if (isMounted) setError(error);
+        setError(error);
       } finally {
         setLoading(false);
-        setIsMounted(false);
       }
     };
     getData(url);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [url, setQueries, queries]);
+  }, [url, queries]);
+
+  useEffect(() => {
+    console.log("using");
+    setSearchParams(queries);
+  }, [setSearchParams, queries]);
 
   const backPage = (e) => {
     e.preventDefault();
@@ -65,9 +55,6 @@ export const useReviews = (url, allReviews = true) => {
       setQueries((curr) => {
         return { ...curr, sort_by: query };
       });
-      setSearchParams((current) => {
-        return { sort_by: query, ...current };
-      });
     }
   };
   const changeOrder = (e) => {
@@ -80,9 +67,6 @@ export const useReviews = (url, allReviews = true) => {
 
     setQueries((curr) => {
       return { ...curr, order: newOrder };
-    });
-    setSearchParams((current) => {
-      return { ...current, order: newOrder };
     });
   };
 
