@@ -6,7 +6,7 @@ To clone this project, for and npm i to install the dependancies
 
 This is the front end for an Express JS API for a games review site.
 
-### Repo here : https://github.com/Hard-Luck/NC-FE-Project
+## Repo here : https://github.com/Hard-Luck/NC-FE-Project
 
 Follow instruction from GH repo to clone the API
 

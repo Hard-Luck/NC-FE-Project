@@ -2,9 +2,9 @@ import React from "react";
 
 const Category = ({ category }) => {
   return (
-    <div className="card">
+    <div className="cat-card">
       <h1>{category.slug}</h1>
-      <p>{category.description}</p>
+      <p className="slug">{category.description}</p>
     </div>
   );
 };

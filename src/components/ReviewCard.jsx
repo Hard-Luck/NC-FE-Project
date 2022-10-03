@@ -29,10 +29,10 @@ const ReviewCard = ({ review }) => {
       </div>
       <div className="btn-container">
         <button className="like-btn" onClick={downvote}>
-          Dislike 👎
+          👎
         </button>
         <button className="like-btn" onClick={upvote}>
-          Like 👍
+          👍
         </button>
       </div>
     </article>

@@ -16,7 +16,7 @@ const Categories = () => {
   if (error) console.error(error);
   return (
     categories && (
-      <div>
+      <main className="cat-container">
         {categories.map((category) => {
           return (
             <Link
@@ -27,7 +27,7 @@ const Categories = () => {
             </Link>
           );
         })}
-      </div>
+      </main>
     )
   );
 };
