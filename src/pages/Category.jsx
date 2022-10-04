@@ -1,18 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useParams } from "react-router-dom";
 import ReviewCard from "../components/ReviewCard";
-import { useReviews } from "../hooks/useReviews";
-import { apiUrl } from "../utils/apiURL";
+import { useCategory } from "../hooks/useCategory";
 
-const Category = (props) => {
-  const [reviews, setReviews] = useState([]);
-  const { data, loading, error, forwardPage, backPage } = useReviews(
-    apiUrl + "/reviews",
-    false
-  );
-
-  useEffect(() => {
-    setReviews(data.reviews);
-  }, [data]);
+const Category = () => {
+  const { category } = useParams();
+  const {
+    data: reviews,
+    loading,
+    error,
+    forwardPage,
+    backPage,
+  } = useCategory(category);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>404: category not found</p>;

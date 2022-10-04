@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
-import { apiUrl } from "../utils/apiURL";
+import { postComment } from "../utils/api";
 
 export const useAddComment = (review_id, setComments) => {
   const [error, setError] = useState(null);
@@ -12,7 +11,7 @@ export const useAddComment = (review_id, setComments) => {
   const addComment = async () => {
     const body = { body: comment.body, username: comment.author };
     try {
-      await axios.post(apiUrl + `/reviews/${review_id}/comments`, body);
+      postComment(review_id, body);
     } catch (e) {
       alert("Error comment failed");
       setComments((curr) => [...curr].slice(0, curr.length - 1));

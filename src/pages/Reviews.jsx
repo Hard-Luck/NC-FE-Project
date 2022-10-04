@@ -1,7 +1,6 @@
 import React from "react";
 import ReviewCard from "../components/ReviewCard";
 import { useReviews } from "../hooks/useReviews";
-import { apiUrl } from "../utils/apiURL";
 import SortReviewForm from "../components/SortReviewForm";
 
 const Reviews = () => {
@@ -13,7 +12,7 @@ const Reviews = () => {
     backPage,
     changeSort,
     changeOrder,
-  } = useReviews(apiUrl + "/reviews");
+  } = useReviews();
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>404: not found</p>;

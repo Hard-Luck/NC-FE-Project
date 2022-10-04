@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import { getReviews } from "../utils/api";
+import { getCategory } from "../utils/api";
 
-export const useReviews = () => {
+export const useCategory = (category) => {
   const [data, setData] = useState([]);
   const [, setSearchParams] = useSearchParams();
   const [loading, setLoading] = useState(false);
@@ -14,10 +14,11 @@ export const useReviews = () => {
   });
 
   useEffect(() => {
-    const getData = async () => {
+    const getData = async (category) => {
       setLoading(true);
       try {
-        const { reviews } = await getReviews(queries);
+        console.log(category);
+        const { reviews } = await getCategory(category, queries);
         setData(reviews);
       } catch (error) {
         setError(error);
@@ -25,8 +26,8 @@ export const useReviews = () => {
         setLoading(false);
       }
     };
-    getData();
-  }, [queries]);
+    getData(category);
+  }, [category, queries]);
 
   useEffect(() => {
     setSearchParams(queries);

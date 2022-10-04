@@ -1,19 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import CategoryCard from "../components/CategoryCard";
-import { useFetch } from "../hooks/useFetch";
-import { apiUrl } from "../utils/apiURL";
+import { useCategories } from "../hooks/useCategories";
 
 const Categories = () => {
-  const [categories, setCategories] = useState([]);
-  const { data, loading, error } = useFetch(apiUrl + "/categories");
-
-  useEffect(() => {
-    setCategories(data.categories);
-  }, [data]);
+  const { data: categories, loading, error } = useCategories();
 
   if (loading) return <p>Loading...</p>;
-  if (error) console.error(error);
+  if (error) return <p>Error, please reload</p>;
   return (
     categories && (
       <main className="cat-container">
