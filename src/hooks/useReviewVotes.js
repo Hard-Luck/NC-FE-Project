@@ -12,12 +12,12 @@ export const useReviewVotes = (review_id, initial) => {
 
   const upvote = () => {
     setVotes((votes) => votes + 1);
-    upvoteComment(1);
+    upvoteComment(review_id, 1);
   };
 
   const downvote = () => {
     setVotes((votes) => Math.max(0, votes - 1));
-    if (votes > 0) upvoteComment(-1);
+    if (votes > 0) upvoteComment(review_id, -1);
   };
 
   return { votes, upvote, downvote };

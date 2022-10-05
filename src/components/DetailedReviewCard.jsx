@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useReviewVotes } from "../hooks/useReviewVotes";
 import { formatDate } from "../utils/date";
 import Comments from "./Comments";
@@ -6,6 +6,7 @@ import { idGen } from "../utils/idGen";
 
 const DetailedReviewCard = ({ review }) => {
   const key = idGen();
+  useEffect(() => {}, [review]);
   const { votes, upvote, downvote } = useReviewVotes(
     review.review_id,
     review.votes

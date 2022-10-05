@@ -6,8 +6,8 @@ const api = axios.create({
 
 export const getReview = async (review_id) => {
   try {
-    const { review } = await api.get(`/reviews/${review_id}`);
-    return review;
+    const { data } = await api.get(`/reviews/${review_id}`);
+    return data;
   } catch {
     throw new Error("Could Not Retrieve Data");
   }

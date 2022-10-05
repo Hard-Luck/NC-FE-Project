@@ -1,13 +1,13 @@
-import React from "react";
+import { useParams } from "react-router-dom";
 import DetailedReviewCard from "../components/DetailedReviewCard";
-import { useReview } from "../hooks/useSingleReview";
+import { useSingleReview } from "../hooks/useSingleReview";
 
 const SingleReview = () => {
-  const { data, loading, error } = useReview();
-
+  const { review_id } = useParams();
+  const { data, loading, error } = useSingleReview(review_id);
   if (loading) return <p>Loading...</p>;
   if (error) return <h1>404: review notfound</h1>;
-  return data && data.length > 0 && <DetailedReviewCard review={data} />;
+  return data && <DetailedReviewCard review={data.review} />;
 };
 
 export default SingleReview;

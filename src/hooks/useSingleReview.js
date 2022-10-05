@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getReview } from "../utils/api";
 
-export const useReview = () => {
-  const [data, setData] = useState([]);
+export const useSingleReview = () => {
   const { review_id } = useParams();
+  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -12,8 +12,8 @@ export const useReview = () => {
     const getData = async () => {
       setLoading(true);
       try {
-        const review = await getReview(review_id);
-        setData(review);
+        const data = await getReview(review_id);
+        setData(data);
       } catch (error) {
         setError(error);
       } finally {
@@ -21,6 +21,6 @@ export const useReview = () => {
       }
     };
     getData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [review_id]);
+  return { data, loading, error };
 };
