@@ -1,37 +1,42 @@
-# NC games front end built with React
+# NC Games Frontend
 
-To clone this project, for and npm i to install the dependancies
+This is a frontend project for a game review site, NC Games. It was developed as part of my participation in the Northcoders bootcamp in 2022. The app provides users with the functionality to post, comment, and like game reviews across various categories.
 
-- Minimum Node version 18
+Hosted Version can be found here: https://vermillion-moxie-983529.netlify.app/(on-netlify)
 
-This is the front end for an Express JS API for a games review site.
+Mobile:
+![image](https://github.com/Hard-Luck/NC-FE-Project/assets/72257311/0bf0c416-c941-4586-b92c-1f7b87378fb9)
 
-## Repo here : https://github.com/Hard-Luck/NC-FE-Project
+Web:
+![image](https://github.com/Hard-Luck/NC-FE-Project/assets/72257311/aed7f953-73fc-400d-8a29-02c53009519b)
 
-Follow instruction from GH repo to clone the API
+## Technical Stack
 
-### Hosted Here on Heroku - https://nc-be-project-nc-games.herokuapp.com/api
+- React.js
+- Axios
 
-## If cloned the available scripts are
+## Prerequisites
 
-Available Scripts ran from the project directory, you can run:
+- Node v16.0.0 or higher
+- Compatible with most modern web browsers
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Clone the repository: `https://github.com/Hard-Luck/NC-FE-Project.git`
+2. Navigate into the project directory: `cd NC-FE-Project`
+3. Install dependencies: `npm install`
+4. Start the local development server: `npm start`
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Once the server is running, you can visit `http://localhost:3000` to view the application in your browser.
 
-### `npm run build`
+## Testing
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Currently, there are no tests available for this project.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Versioning
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This is version 1.0 of the NC Games frontend.
 
-y)
+## License
+
+This project is fully open-source and is available under the [MIT License](LICENSE).

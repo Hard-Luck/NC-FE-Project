@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://nc-be-project-nc-games.herokuapp.com/api/",
+  baseURL: "https://nc-games-api-mt.onrender.com/api",
 });
 
 export const getReview = async (review_id) => {
